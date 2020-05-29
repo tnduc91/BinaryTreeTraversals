@@ -1,11 +1,22 @@
-﻿using System;
-
+﻿using System.Collections.Generic;
+using System;
 namespace BinaryTreeTraversals
 {
     class Program
     {
         static void Main(string[] args)
         {
+            var root = InitTree();
+            var preOrder = new List<int>();
+            var inOrder = new List<int>();
+            var postOrder = new List<int>();
+            Traversals.PreOrder(root, ref preOrder);
+            Traversals.InOrder(root, ref inOrder);
+            Traversals.PostOrder(root, ref postOrder);
+            
+            Console.WriteLine(String.Join(',', preOrder));
+            Console.WriteLine(String.Join(',', inOrder));
+            Console.WriteLine(String.Join(',', postOrder));
         }
 
         public static Node InitTree()
