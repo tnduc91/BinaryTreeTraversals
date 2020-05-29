@@ -30,5 +30,20 @@ namespace BinaryTreeTraversals
                 result.Add(root.Value);
             }
         }
+
+        // Complexity = O(n)
+        public static void GetLeafNodes(Node root, ref List<int> result)
+        {
+            if (root == null)
+                return;
+
+            if (root.Left == null && root.Right == null)
+            {
+                result.Add(root.Value);
+            }
+
+            GetLeafNodes(root.Left, ref result);
+            GetLeafNodes(root.Right, ref result);
+        }
     }
 }

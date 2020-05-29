@@ -10,13 +10,17 @@ namespace BinaryTreeTraversals
             var preOrder = new List<int>();
             var inOrder = new List<int>();
             var postOrder = new List<int>();
+            var allLeaves = new List<int>();
+
             Traversals.PreOrder(root, ref preOrder);
             Traversals.InOrder(root, ref inOrder);
             Traversals.PostOrder(root, ref postOrder);
+            Traversals.GetLeafNodes(root, ref allLeaves);
             
-            Console.WriteLine(String.Join(',', preOrder));
-            Console.WriteLine(String.Join(',', inOrder));
-            Console.WriteLine(String.Join(',', postOrder));
+            Console.WriteLine("Pre  Order: " + String.Join(',', preOrder));
+            Console.WriteLine("In   Order: " + String.Join(',', inOrder));
+            Console.WriteLine("Post Order: " + String.Join(',', postOrder));
+            Console.WriteLine("Leaves    : " + String.Join(',', allLeaves));
         }
 
         public static Node InitTree()
