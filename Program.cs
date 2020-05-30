@@ -11,12 +11,13 @@ namespace BinaryTreeTraversals
             var inOrder = new List<int>();
             var postOrder = new List<int>();
             var allLeaves = new List<int>();
+            var leavesWithDepth = new Dictionary<int, int>();
 
             Traversals.PreOrder(root, ref preOrder);
             Traversals.InOrder(root, ref inOrder);
             Traversals.PostOrder(root, ref postOrder);
             Traversals.GetLeafNodes(root, ref allLeaves);
-            
+            Traversals.GetLeavesWithDepth(root, 1, ref leavesWithDepth);
             Console.WriteLine("Pre  Order: " + String.Join(',', preOrder));
             Console.WriteLine("In   Order: " + String.Join(',', inOrder));
             Console.WriteLine("Post Order: " + String.Join(',', postOrder));

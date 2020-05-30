@@ -45,5 +45,22 @@ namespace BinaryTreeTraversals
             GetLeafNodes(root.Left, ref result);
             GetLeafNodes(root.Right, ref result);
         }
+
+        public static void GetLeavesWithDepth(Node root, int currentLevel, ref Dictionary<int,int> result)
+        {
+            if (root == null)
+                return;
+
+            if (root.Left == null && root.Right == null)
+            {
+                result.Add(root.Value, currentLevel);
+            }
+
+            GetLeavesWithDepth(root.Left, currentLevel + 1, ref result);
+            GetLeavesWithDepth(root.Right, currentLevel + 1, ref result);
+        }
+
+        
+
     }
 }
