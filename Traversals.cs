@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Collections;
+using System;
+
 namespace BinaryTreeTraversals
 {
     public static class Traversals
@@ -60,7 +63,41 @@ namespace BinaryTreeTraversals
             GetLeavesWithDepth(root.Right, currentLevel + 1, ref result);
         }
 
-        
+        // Tree traversal using Queue
+        public static int GetSumOfDeepestLeavesUsingQueue(Node root)
+        {
+            if (root == null){
+                return 0;
+            }
+            var sum = 0;
+            var maxLevel = 0;
+            var queue = new Queue<Tuple<Node, int>>();
+            var tuple = new Tuple<Node, int>(root, 0);
+            queue.Enqueue(tuple);
+
+            while(queue.Count != 0)
+            {
+                var picked = queue.Dequeue();
+                var pickedDepth = picked.Item2;
+                if (picked.Item1.Left == null && picked.Item1.Right == null){
+                    if (pickedDepth > maxLevel){
+                        maxLevel = pickedDepth;
+                        sum = picked.Item1.Value;
+                    }else if (pickedDepth == maxLevel)
+                    {
+                        sum += picked.Item1.Value;
+                    }
+                }else{ 
+                    if (picked.Item1.Left != null) queue.Enqueue(new Tuple<Node, int>(picked.Item1.Left, pickedDepth + 1));
+                    if (picked.Item1.Right != null) queue.Enqueue(new Tuple<Node, int>(picked.Item1.Right, pickedDepth + 1));
+                }
+
+            }
+
+            return sum;
+
+        }
+
 
     }
 }
